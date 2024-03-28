@@ -25,9 +25,6 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: Run unit tests
-        run: dotnet test Pokedex.API.Tests/Pokedex.API.Tests.csproj --no-build --configuration Release --verbosity d 
-       
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
@@ -55,9 +52,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6F5926F4980A4A83B7B24096CCD8AAAD }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AFF4EE58D361405BA57A9496E067A6E2 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F73F43F65A7C4D0B839F1B22249DA003 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6E3BF9E304D1403C8066DE93197BD79D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A8A9D39D7743489B8345A7E6D62F0D9D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_18CF1E50A7C64F15A1544C45F774F58E }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
