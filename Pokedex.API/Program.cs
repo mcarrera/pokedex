@@ -26,22 +26,19 @@ namespace Pokedex.API
 
             builder.Services.AddHttpClient<IFunTranslationService, FunTranslationService>(client =>
             {
-                client.BaseAddress = new Uri("https://api.funtranslations.com/"); 
+                client.BaseAddress = new Uri("https://api.funtranslations.com/");
             });
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
 
             app.MapControllers();
 
