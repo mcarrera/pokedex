@@ -22,13 +22,8 @@ namespace Pokedex.API
 
             // inject items
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            
+
             builder.Services.AddScoped<PokeApiClient, PokeApiClient>();
-            
-            builder.Services.AddHttpClient<PokemonService>(client =>
-            {
-                client.BaseAddress = new Uri("https://pokeapi.co");
-            });
 
             var app = builder.Build();
 
