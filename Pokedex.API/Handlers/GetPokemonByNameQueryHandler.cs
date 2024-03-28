@@ -1,23 +1,27 @@
 ﻿using MediatR;
 using Pokedex.API.Handlers.Dtos;
 using Pokedex.API.Handlers.Queries;
+using Pokedex.API.Services;
 
 namespace Pokedex.API.Handlers
 {
     public class GetPokemonByNameQueryHandler : IRequestHandler<GetPokemonByNameRequest, PokemonInfoDto>
     {
         private readonly ILogger<GetPokemonByNameQueryHandler> _logger;
+        private readonly PokemonService _pokemonService;
 
-        public GetPokemonByNameQueryHandler(ILogger<GetPokemonByNameQueryHandler> logger)
+        public GetPokemonByNameQueryHandler(ILogger<GetPokemonByNameQueryHandler> logger, PokemonService pokemonService)
         {
             _logger = logger;
+            _pokemonService = pokemonService;
+
         }
 
-        public Task<PokemonInfoDto> Handle(GetPokemonByNameRequest request, CancellationToken cancellationToken)
+        public async Task<PokemonInfoDto> Handle(GetPokemonByNameRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                return Task.FromResult(new PokemonInfoDto("fooo"));
+                return await _pokemonService.GetPokemonByNameAsync(request.Name);
             }
             catch (Exception ex)
             {
