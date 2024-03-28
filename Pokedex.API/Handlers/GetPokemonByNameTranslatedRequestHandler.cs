@@ -27,9 +27,11 @@ namespace Pokedex.API.Handlers
                 var pokeMon = await _pokeApiClient.GetResourceAsync<Pokemon>(request.Name);
                 var species = await _pokeApiClient.GetResourceAsync(pokeMon.Species);
                 string description = await GetTranslatedDescription(species);
-                if(description == string.Empty)
+                
+                // fallback to the default description if a translation is not available
+                if (string.IsNullOrEmpty(description))
                 {
-                    description = Helpers.GetPokemonDescriptionFromSpecies(species)??string.Empty;
+                    description = GetDefaultDescription(species);
                 }
                 return new PokemonInfoDto(pokeMon.Name, description, species.Habitat.Name, species.IsLegendary);
             }
@@ -54,6 +56,11 @@ namespace Pokedex.API.Handlers
             }
 
             return description;
+        }
+
+        private static string GetDefaultDescription(PokemonSpecies species)
+        {
+            return Helpers.GetPokemonDescriptionFromSpecies(species) ?? string.Empty;
         }
     }
 }
