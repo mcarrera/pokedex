@@ -26,9 +26,8 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Run unit tests
-        run: dotnet test Pokedex.API.Tests.csproj --no-build --verbosity normal 
-        working-directory: Pokedex.API.Tests/
-
+        run: dotnet test Pokedex.API.Tests/Pokedex.API.Tests.csproj --no-build --verbosity normal 
+       
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
