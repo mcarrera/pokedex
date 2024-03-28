@@ -3,6 +3,7 @@ using Pokedex.API.Handlers.Dtos;
 
 namespace Pokedex.API.Services
 {
+    [Obsolete]
     public class PokemonService
     {
         private readonly HttpClient _httpClient;
@@ -14,7 +15,7 @@ namespace Pokedex.API.Services
 
         public async Task<PokemonInfoDto> GetPokemonByNameAsync(string pokemonName)
         {
-            var response = await _httpClient.GetAsync($"/api/v2/pokemon/{pokemonName}");
+            var response = await _httpClient.GetAsync($"/api/v2/pokemon-species/{pokemonName}");
 
             if (response.IsSuccessStatusCode)
             {
