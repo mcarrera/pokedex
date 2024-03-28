@@ -1,4 +1,3 @@
-
 using PokeApiNet;
 using Pokedex.API.Services;
 using System.Reflection;
@@ -24,6 +23,11 @@ namespace Pokedex.API
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             builder.Services.AddScoped<PokeApiClient, PokeApiClient>();
+
+            builder.Services.AddHttpClient<IFunTranslationService, FunTranslationService>(client =>
+            {
+                client.BaseAddress = new Uri("https://api.funtranslations.com/"); 
+            });
 
             var app = builder.Build();
 

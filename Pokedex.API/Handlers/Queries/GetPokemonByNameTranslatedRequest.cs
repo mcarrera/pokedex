@@ -3,15 +3,14 @@ using Pokedex.API.Handlers.Dtos;
 
 namespace Pokedex.API.Handlers.Queries
 {
-    public class GetPokemonByNameRequest : IRequest<PokemonInfoDto>
+    public class GetPokemonByNameTranslatedRequest : IRequest<PokemonInfoDto>
     {
-        public GetPokemonByNameRequest(string pokemonName)
+        public GetPokemonByNameTranslatedRequest(string pokemonName)
         {
             Name = pokemonName;
-          
         }
 
         public string Name { get; }
-  
+
     }
 }

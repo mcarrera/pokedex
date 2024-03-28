@@ -37,7 +37,26 @@ namespace Pokedex.API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError("Error in GetPokemonInfo: {0} ", ex.Message);
+                _logger.LogError(ex.Message, "Error in GetPokemonInfo: {0} ");
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+        [HttpGet("translated/{pokemonName}")]
+        public async Task<IActionResult> GetPokemonByNameWithTranslatedDescription(string pokemonName)
+        {
+            try
+            {
+                var pokemonInfo = await _mediator.Send(new GetPokemonByNameTranslatedRequest(pokemonName));
+                if (pokemonInfo == null)
+                {
+                    return NotFound();
+                }
+                return Ok(pokemonInfo);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, "Error in GetPokemonByNameWithTranslatedDescription: {0} ");
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
