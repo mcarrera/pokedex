@@ -44,7 +44,7 @@ namespace Pokedex.API.Handlers
 
         private async Task<string> GetTranslatedDescription(PokemonSpecies species)
         {
-            var description = Helpers.GetPokemonDescriptionFromSpecies(species);
+            var description = Helpers.GetPokemonDescriptionFromSpecies(species) ?? string.Empty;
 
             if (species.Habitat.Name.Equals("cave", StringComparison.InvariantCultureIgnoreCase) || species.IsLegendary)
             {

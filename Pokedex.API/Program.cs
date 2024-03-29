@@ -39,6 +39,9 @@ namespace Pokedex.API
 
             var app = builder.Build();
 
+            app.MapHealthChecks("/health");
+
+
             // Configure the HTTP request pipeline.
 
 
@@ -54,11 +57,11 @@ namespace Pokedex.API
             app.UseRouting();
             app.MapControllers();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapHealthChecks("/health");
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //    endpoints.MapHealthChecks("/health");
+            //});
 
             app.Run();
         }

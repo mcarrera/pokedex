@@ -2,8 +2,8 @@
 {
     public class TranslationResult
     {
-        public Success Success { get; set; }
-        public Contents Contents { get; set; }
+        public Success Success { get; set; } = new Success();
+        public Contents Contents { get; set; } = new Contents();
     }
 
     public class Success
@@ -13,9 +13,9 @@
 
     public class Contents
     {
-        public string Translated { get; set; }
-        public string Text { get; set; }
-        public string Translation { get; set; }
+        public string Translated { get; set; } = string.Empty;
+        public string Text { get; set; } = string.Empty;
+        public string Translation { get; set; } = string.Empty;
     }
 
 }
