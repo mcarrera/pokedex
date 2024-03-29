@@ -1,12 +1,11 @@
 ﻿
 using Newtonsoft.Json;
-using Pokedex.API.Handlers.Dtos;
 
 namespace Pokedex.API.Services
 {
     public class FunTranslationService : IFunTranslationService
     {
-        private ILogger<FunTranslationService> _logger;
+        private readonly ILogger<FunTranslationService> _logger;
         private readonly HttpClient _httpClient;
         public FunTranslationService(ILogger<FunTranslationService> logger, HttpClient httpClient)
         {

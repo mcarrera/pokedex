@@ -3,7 +3,6 @@ namespace Pokedex.API.Tests.Services
     using Microsoft.Extensions.Logging;
     using Moq;
     using Moq.Protected;
-    using Newtonsoft.Json;
     using Pokedex.API.Services;
     using System.Net;
     using Xunit;

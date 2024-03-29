@@ -1,13 +1,8 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Moq;
 using PokeApiNet;
 using Pokedex.API.Handlers;
-using Pokedex.API.Handlers.Dtos;
 using Pokedex.API.Handlers.Queries;
-using Xunit;
 
 namespace Pokedex.API.Tests.Handlers
 {

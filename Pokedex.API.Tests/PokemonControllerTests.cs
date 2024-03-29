@@ -4,15 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using PokeApiNet;
 using Pokedex.API.Controllers;
 using Pokedex.API.Handlers.Dtos;
 using Pokedex.API.Handlers.Queries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.API.Tests
 {

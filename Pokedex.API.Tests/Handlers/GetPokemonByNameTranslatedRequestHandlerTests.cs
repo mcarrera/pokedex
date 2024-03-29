@@ -4,11 +4,6 @@ using PokeApiNet;
 using Pokedex.API.Handlers;
 using Pokedex.API.Handlers.Queries;
 using Pokedex.API.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pokedex.API.Tests.Handlers
 {

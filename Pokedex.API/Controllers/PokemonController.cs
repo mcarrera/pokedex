@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Pokedex.API.Handlers.Queries;
-using System.Net;
 
 namespace Pokedex.API.Controllers
 {
@@ -23,6 +22,16 @@ namespace Pokedex.API.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Returns a Pokemon with description and additional info.
+        /// </summary>
+        /// <param name="pokemonName">The name of the Pokemon to retrieve information for.</param>
+        /// <returns>
+        /// Returns a <see cref="IActionResult"/> containing the Pokemon information.
+        /// If the Pokemon is found, returns a <see cref="OkObjectResult"/> with a <see cref="PokemonInfoDto"/> object.
+        /// If the Pokemon is not found, returns a <see cref="NotFoundResult"/>.
+        /// If an error occurs during processing, returns a <see cref="StatusCodeResult"/> with status code 500 (Internal Server Error).
+        /// </returns>
         [HttpGet("{pokemonName}")]
         public async Task<IActionResult> GetPokemonByName(string pokemonName)
         {
@@ -42,6 +51,16 @@ namespace Pokedex.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns a Pokemon with a translated description and additional info.
+        /// </summary>
+        /// <param name="pokemonName">The name of the Pokemon to retrieve information for.</param>
+        /// <returns>
+        /// Returns a <see cref="IActionResult"/> containing the Pokemon information.
+        /// If the Pokemon is found, returns a <see cref="OkObjectResult"/> with a <see cref="PokemonInfoDto"/> object.
+        /// If the Pokemon is not found, returns a <see cref="NotFoundResult"/>.
+        /// If an error occurs during processing, returns a <see cref="StatusCodeResult"/> with status code 500 (Internal Server Error).
+        /// </returns>
         [HttpGet("translated/{pokemonName}")]
         public async Task<IActionResult> GetPokemonByNameWithTranslatedDescription(string pokemonName)
         {

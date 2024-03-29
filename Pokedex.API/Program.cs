@@ -22,11 +22,16 @@ namespace Pokedex.API
 
             // inject items
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            
+            // adding the client as scoped, for perfomance and to avoid any unknown side effects using singleton
             builder.Services.AddScoped<PokeApiClient>();
+
             builder.Services.AddScoped<IPokeApiClientWrapper, PokeApiClientWrapper>();
 
             builder.Services.AddHttpClient<IFunTranslationService, FunTranslationService>(client =>
             {
+                // in a production environment, I would get the base address from a configuration file
+                // or perhaps an environment variable if there are different environments (DEV, QA, ..., PROD)
                 client.BaseAddress = new Uri("https://api.funtranslations.com/");
             });
 

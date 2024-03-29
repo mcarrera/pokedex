@@ -22,6 +22,11 @@ namespace Pokedex.API.Handlers
         {
             try
             {
+                // I am well aware we are doing 2 requests here. Altought not ideal for perfomances
+                // this is convenient for readibility. In a production scenario, I would consider
+                // creating my own service to consume pokeapi.com
+                // (similar to how I did for the funtranslation.com api)
+
                 var pokeMon = await _pokeApiClient.GetResourceAsync<Pokemon>(request.Name);
                 var species = await _pokeApiClient.GetResourceAsync<PokemonSpecies>(pokeMon.Species.Name);
                 return new PokemonInfoDto(pokeMon.Name, Helpers.GetPokemonDescriptionFromSpecies(species), species.Habitat.Name, species.IsLegendary);
