@@ -10,10 +10,10 @@ namespace Pokedex.API.Handlers
     public class GetPokemonByNameTranslatedRequestHandler : IRequestHandler<GetPokemonByNameTranslatedRequest, PokemonInfoDto>
     {
         private readonly ILogger<GetPokemonByNameTranslatedRequestHandler> _logger;
-        private readonly PokeApiClient _pokeApiClient;
+        private readonly IPokeApiClientWrapper _pokeApiClient;
         private readonly IFunTranslationService _translationService;
 
-        public GetPokemonByNameTranslatedRequestHandler(ILogger<GetPokemonByNameTranslatedRequestHandler> logger, PokeApiClient pokeApiClient, IFunTranslationService funTranslationService)
+        public GetPokemonByNameTranslatedRequestHandler(ILogger<GetPokemonByNameTranslatedRequestHandler> logger, IPokeApiClientWrapper pokeApiClient, IFunTranslationService funTranslationService)
         {
             _logger = logger;
             _pokeApiClient = pokeApiClient;
@@ -25,7 +25,7 @@ namespace Pokedex.API.Handlers
             try
             {
                 var pokeMon = await _pokeApiClient.GetResourceAsync<Pokemon>(request.Name);
-                var species = await _pokeApiClient.GetResourceAsync(pokeMon.Species);
+                var species = await _pokeApiClient.GetResourceAsync<PokemonSpecies>(pokeMon.Species.Name);
                 string description = await GetTranslatedDescription(species);
                 
                 // fallback to the default description if a translation is not available

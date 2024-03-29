@@ -10,9 +10,9 @@ namespace Pokedex.API.Handlers
     public class GetPokemonByNameRequestHandler : IRequestHandler<GetPokemonByNameRequest, PokemonInfoDto>
     {
         private readonly ILogger<GetPokemonByNameRequestHandler> _logger;
-        private readonly PokeApiClient _pokeApiClient;
+        private readonly IPokeApiClientWrapper _pokeApiClient;
 
-        public GetPokemonByNameRequestHandler(ILogger<GetPokemonByNameRequestHandler> logger, PokeApiClient pokeApiClient)
+        public GetPokemonByNameRequestHandler(ILogger<GetPokemonByNameRequestHandler> logger, IPokeApiClientWrapper pokeApiClient)
         {
             _logger = logger;
             _pokeApiClient = pokeApiClient;
@@ -23,7 +23,7 @@ namespace Pokedex.API.Handlers
             try
             {
                 var pokeMon = await _pokeApiClient.GetResourceAsync<Pokemon>(request.Name);
-                var species = await _pokeApiClient.GetResourceAsync(pokeMon.Species);
+                var species = await _pokeApiClient.GetResourceAsync<PokemonSpecies>(pokeMon.Species.Name);
                 return new PokemonInfoDto(pokeMon.Name, Helpers.GetPokemonDescriptionFromSpecies(species), species.Habitat.Name, species.IsLegendary);
             }
             catch (Exception ex)

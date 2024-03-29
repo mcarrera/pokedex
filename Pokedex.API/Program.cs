@@ -1,4 +1,5 @@
 using PokeApiNet;
+using Pokedex.API.Handlers;
 using Pokedex.API.Services;
 using System.Reflection;
 
@@ -21,8 +22,8 @@ namespace Pokedex.API
 
             // inject items
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-
-            builder.Services.AddScoped<PokeApiClient, PokeApiClient>();
+            builder.Services.AddScoped<PokeApiClient>();
+            builder.Services.AddScoped<IPokeApiClientWrapper, PokeApiClientWrapper>();
 
             builder.Services.AddHttpClient<IFunTranslationService, FunTranslationService>(client =>
             {
