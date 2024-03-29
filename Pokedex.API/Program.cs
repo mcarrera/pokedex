@@ -18,6 +18,8 @@ namespace Pokedex.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add health checks
+            builder.Services.AddHealthChecks();
 
 
             // inject items
@@ -39,6 +41,9 @@ namespace Pokedex.API
 
             // Configure the HTTP request pipeline.
 
+
+            // normally, for security reasons, swagger would be shown only if the environment is development.
+            // I removed the if condition so the swagger UI can be used on the azure deployment, which is considered a production slot
             app.UseSwagger();
             app.UseSwaggerUI();
 
@@ -48,6 +53,12 @@ namespace Pokedex.API
 
             app.UseRouting();
             app.MapControllers();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
+            });
 
             app.Run();
         }

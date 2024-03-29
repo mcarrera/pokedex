@@ -1,7 +1,7 @@
-# pokedex
-A REST api to retrieve Pokemon Information
+# Pokedex
+A REST api, build with .NET 8, to retrieve Pokemon Information
 
-## Run Locally
+## How to run and Test the application
 
 ### Prerequisites
 - .NET Core SDK 8
@@ -32,7 +32,7 @@ Start the API
   dotnet run --urls=https://localhost:7040
 ```
 
-In alternative, you can use an IDE such as Visual Studio, Visual Studio Code or JetBrains Rider and open the Pokedex.sln solution.
+In alternative, an IDE such as Visual Studio, Visual Studio Code or JetBrains Rider can be used to open the Pokedex.sln solution.
 
 ### Troubleshooting
 If you encounter any issues while running the API, check the console output for error messages. Ensure that the .NET Core SDK is correctly installed and that the specified port is not being used by another service.
@@ -41,6 +41,7 @@ If you encounter any issues while running the API, check the console output for 
 The API Exposes 2 endpoints:
 
 /api/Pokemon/{name}: Returns a Pokemon with description and additional info.
+
 /api/Pokemon/translated/{name}: Returns a Pokemon with translated description and additional info.
 
 which can be tested with curl
@@ -57,9 +58,9 @@ Additionally, a postman collection is located in the Postman folder at the root 
 
 
 ### Azure Deployment
-The API is deployed to Azure via GitHub Actions at the URL `https://pokemarco.azurewebsites.net/`. To test it, simply replace `https://localhost:7040` with the above URL.
+The API is deployed to Azure via GitHub Actions at the URL https://pokemarco.azurewebsites.net/. To test it, simply replace https://localhost:704` with the above URL.
 
-Please note that the Azure deployment is on Free Tier, so it might slow to respond, in particular if it has been idle.
+Please note that the application is deployed on Azure’s Free Tier. If the application has not been accessed for a while and goes into an idle state, there might be a slight delay in response times as Azure needs to resume the application.
 
 ## Design Decisions and Libraries Used
 
@@ -81,7 +82,8 @@ Please note that the Azure deployment is on Free Tier, so it might slow to respo
 While coding, I made certain decisions, mainly in the interest of time and to have a working prototype soon. I added comments to the code when that was the case. 
 If this were an actual Production project, I would consider the following points:
 * Gaining a clear and as complete an understanding as possible of the business domain (Pokemon), including potential licensing and copyright issues.
-* Gaining a more complete understanding of the third-party API involved, including performance implications, licensing and daily usage limits. Rather than using a 3rd party library, it might be worth exploring building a service to call the pokeapi.co API Directly (similar to how it is done for the funtranslation API)
-* I hard-coded several string values in the code. For example, error messages, URLs, etc. This was done in the interest of time. In a production environment, I would consider using setting files and/or environment variables.
+* Gaining a more complete understanding of the third-party API involved, including performance implications, licensing and daily usage limits. It might be worth exploring the idea of building a service to directly call the pokeapi.co API (similar to how it is done for the funtranslation API)
+* I hard-coded several string values in the code. For example, error messages, URLs, etc. This was done in the interest of time. In a production environment, I would consider using setting files, environment variables and/or constant strings in a static class.
 * For a prototype with limited usage, performance appears to be adequate (usually the API returns a result in less than 1 second). For a production product, I would recommend estimating load volumes and conducting stress tests. If necessary, caching strategies (for example, a key/value database) should be considered.
 * The unit tests included in the solution are not comprehensive. Each layer of the application (controller, handlers, services) is covered, but definitely to a lesser extent than what would be expected in a production environment.
+* A basic health check endpoint is implemented at /health. This endpoint can be used to monitor the responsiveness of the API.
