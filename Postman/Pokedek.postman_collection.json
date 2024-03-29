@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "fc8809d3-c219-44f9-8a65-659a4fbb0923",
+		"name": "Pokedek",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11859714"
+	},
+	"item": [
+		{
+			"name": "GetPokemonByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Pokemon/mewtwo",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Pokemon",
+						"mewtwo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPokemonByNameWithTranslatedDescription",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7040/api/Pokemon/translated/mewtwo",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7040",
+					"path": [
+						"api",
+						"Pokemon",
+						"translated",
+						"mewtwo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AZURE GetPokemonByNameWithTranslatedDescription",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokemarco.azurewebsites.net/api/Pokemon/translated/ditto",
+					"protocol": "https",
+					"host": [
+						"pokemarco",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Pokemon",
+						"translated",
+						"ditto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AZURE GetPokemonByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokemarco.azurewebsites.net/api/Pokemon/mewtwo",
+					"protocol": "https",
+					"host": [
+						"pokemarco",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"api",
+						"Pokemon",
+						"mewtwo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
