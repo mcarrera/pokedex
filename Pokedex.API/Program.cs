@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using PokeApiNet;
 using Pokedex.API.Handlers;
 using Pokedex.API.Services;
@@ -30,11 +31,11 @@ namespace Pokedex.API
 
             builder.Services.AddScoped<IPokeApiClientWrapper, PokeApiClientWrapper>();
 
+            // get the funtranslationAPI from appsetting.json, or default it if not found
+            var funTranslationUrl = builder.Configuration[Common.Constants.FunTranslationURL] ?? "https://api.funtranslations.com/";
             builder.Services.AddHttpClient<IFunTranslationService, FunTranslationService>(client =>
             {
-                // in a production environment, I would get the base address from a configuration file
-                // or perhaps an environment variable if there are different environments (DEV, QA, ..., PROD)
-                client.BaseAddress = new Uri("https://api.funtranslations.com/");
+                client.BaseAddress = new Uri(funTranslationUrl);
             });
 
             var app = builder.Build();
