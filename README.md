@@ -44,7 +44,7 @@ The API Exposes 2 endpoints:
 
 /api/Pokemon/translated/{name}: Returns a Pokemon with translated description and additional info.
 
-which can be tested with curl
+They can be tested with curl
 
 ```bash
 curl --location 'https://localhost:7040/api/Pokemon/mewtwo'
@@ -87,5 +87,5 @@ If this were an actual Production project, I would consider the following points
 * For a prototype with limited usage, performance appears to be adequate (usually the API returns a result in less than 1 second). For a production product, I would recommend estimating load volumes and conducting stress tests. If necessary, caching strategies (for example, a key/value database) should be considered.
 * The unit tests included in the solution are not comprehensive. Each layer of the application (controller, handlers, services) is covered, but definitely to a lesser extent than what would be expected in a production environment.
 * API versioning was not implemented. In a production environment I would reccomend implementing it in order to ensure backward compatibility.
-* * A basic health check endpoint is implemented at /health. This endpoint can be used to monitor the responsiveness of the API. I have an external tool pinging it every hour and I will get notified if it times out.
+* A basic health check endpoint is implemented at /health. This endpoint can be used to monitor the responsiveness of the API. In a production environment, we might want to monitor availability of external dependecies, etc.
 * I pushed my code only to the main branch. Working alone on throaway code, I didn't feel the need to create feature branches. Note that a high number of commits were used to troubleshoot some issues with the Azure deploy. Normally I would do that in a feature branch and/or squash the commit so that only 1 commit will show in the main branch.
