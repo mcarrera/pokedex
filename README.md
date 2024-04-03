@@ -58,9 +58,9 @@ Additionally, a postman collection is located in the Postman folder at the root 
 
 
 ### Azure Deployment
-The API is deployed to Azure via GitHub Actions at the URL https://pokemarco.azurewebsites.net/. To test it, simply replace https://localhost:704` with the above URL.
+The API is deployed to Azure via GitHub Actions at the URL https://pokemarco.azurewebsites.net/. To test it, simply replace https://localhost:7040 with the above URL.
 
-Please note that the application is deployed on Azure’s Free Tier. If the application has not been accessed for a while and goes into an idle state, there might be a slight delay in response times as Azure needs to resume the application.
+Please note that the application is deployed on Azureâ€™s Free Tier. If the application has not been accessed for a while and goes into an idle state, there might be a slight delay in response times as Azure needs to resume the application.
 
 ## Design Decisions and Libraries Used
 
@@ -85,6 +85,7 @@ If this were an actual Production project, I would consider the following points
 * Gaining a more complete understanding of the third-party API involved, including performance implications, licensing and daily usage limits. It might be worth exploring the idea of building a service to directly call the pokeapi.co API (similar to how it is done for the funtranslation API)
 * I hard-coded several string values in the code. For example, error messages, URLs, etc. This was done in the interest of time. In a production environment, I would consider using setting files, environment variables and/or constant strings in the static Constants class.
 * For a prototype with limited usage, performance appears to be adequate (usually the API returns a result in less than 1 second). For a production product, I would recommend estimating load volumes and conducting stress tests. If necessary, caching strategies (for example, a key/value database) should be considered.
+* No documentation, and no authentication is provided. For a production API, based on the consumer I would consider adding authentication (e.g. via JWT token) and write comprehensive documentation
 * The unit tests included in the solution are not comprehensive. Each layer of the application (controller, handlers, services) is covered, but definitely to a lesser extent than what would be expected in a production environment.
 * API versioning was not implemented. In a production environment I would reccomend implementing it in order to ensure backward compatibility.
 * A basic health check endpoint is implemented at /health. This endpoint can be used to monitor the responsiveness of the API. In a production environment, we might want to monitor availability of external dependecies, etc.
